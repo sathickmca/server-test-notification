@@ -1,0 +1,14 @@
+{
+  "name": "server-test-notification",
+  "version": "0.1.0",
+  "description": "A simple Node.js project scaffolded in the ServerTestNotification workspace.",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["node", "server", "notification"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {}
+}
