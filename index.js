@@ -53,6 +53,36 @@ app.post('/servertest', async (req, res) => {
   }
 });
 
+app.get('/servertest', async (req, res) => {
+  try {
+    const collection = await connectMongo();
+    const documents = await collection
+      .find({}, {
+        projection: {
+          _id: 0,
+          servername: 1,
+          applicationname: 1,
+          applicationowneremail: 1,
+          createddatetime: 1,
+        },
+      })
+      .toArray();
+
+    return res.status(200).json({
+      success: true,
+      count: documents.length,
+      data: documents,
+    });
+  } catch (error) {
+    console.error('Failed to retrieve servertest documents:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Internal server error',
+      error: error.message,
+    });
+  }
+});
+
 app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Route not found' });
 });
